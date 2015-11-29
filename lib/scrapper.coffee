@@ -25,10 +25,14 @@ module.exports = (publicPageUrl, c) ->
         result[field] = $(o.selector).map(->
           R.mapObjIndexed (v,k) =>
             if k == 'date'
-              from: $(@).find(v).text().replace(/ –.*/,'')
-              to:   $(@).find(v).text().replace(/.*– /,'')
-            else
+              date =  $(@).find(v).text()
+              from: date.replace(/ –.*/,'')
+              to:  date.replace(/.*– /,'') if /–/.test date
+            else if R.is String, v
               $(@).find(v).text()
+            else
+              $(@).find(v.selector)[v.method](v.parameters)
+
           ,R.merge mapping.defaultSectionMapping, o.mapping
         ).get()
 

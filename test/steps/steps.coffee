@@ -21,5 +21,5 @@ module.exports = do ->
 
   .then '$field is $value', (field, value, next) ->
     result[field] = R.path field.split('.'), result if /\./.test(field)
-    assert.equal value, result[field]
+    assert.equal value, String(result[field])
     next()

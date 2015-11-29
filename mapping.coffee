@@ -23,6 +23,15 @@ module.exports =
         grade: '.item-subtitle'
         description: '.description p'
 
+    projects:
+      selector: '#projects .project'
+      mapping:
+        link:
+          selector: 'a'
+          method: 'attr'
+          parameters: 'href'
+
+
   defaultSectionMapping:
     title: '.item-title'
     description: '.description'

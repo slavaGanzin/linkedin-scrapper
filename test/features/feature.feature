@@ -40,3 +40,10 @@ Scenario: Parse skills
   Then skills.0 is skill1
   Then skills.1 is skill2
   Then skills.2 is skill3
+
+Scenario: Parse projects
+  Then projects.0.title is Project 1
+  Then projects.0.description is Description of project 1
+  Then projects.0.date.from is Starting January 2012
+  Then projects.0.date.to is undefined
+  Then projects.0.link is https://www.linkedin.com/redir/redirect?url=http%3A%2F%2Fproject%2Eone%2Eurl&urlhash=xt2h&trk=prof-project-name-title
