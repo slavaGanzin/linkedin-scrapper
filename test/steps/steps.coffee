@@ -16,10 +16,10 @@ module.exports = do ->
 
 
   .then 'status is $NUM', (num, next) ->
-    assert.equal (parseInt num), response.statusCode
+    assert.equal response.statusCode, parseInt num
     next()
 
   .then '$field is $value', (field, value, next) ->
     result[field] = R.path field.split('.'), result if /\./.test(field)
-    assert.equal value, String(result[field])
+    assert.equal String(result[field]), value
     next()

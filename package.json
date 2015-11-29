@@ -1,10 +1,10 @@
 {
-  "name": "linkedin-scrapper",
+  "name": "linkedin-profile",
   "version": "0.0.1",
-  "description": "Scrapper of public profiles at linkedIn",
+  "description": "Scraper of public profiles at linkedIn",
   "main": "index.coffee",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/all.coffee --compilers coffee:coffee-script/register --timeout 5000"
+    "test": "npm install && NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/all.coffee --compilers coffee:coffee-script/register --timeout 5000"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,12 @@
   "homepage": "https://github.com/terraqout/linkedin-scrapper#readme",
   "dependencies": {
     "cheerio": "^0.19.0",
-    "coffee-script": "^1.10.0",
-    "mocha": "^2.3.4",
     "ramda": "^0.18.0",
     "request": "^2.67.0",
+    "coffee-script": "^1.10.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
     "yadda": "^0.16.1"
   }
 }

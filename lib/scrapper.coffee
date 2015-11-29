@@ -3,12 +3,14 @@ request = require 'request'
 mapping = require '../mapping'
 R = require 'ramda'
 
-module.exports = (publicPageUrl, c) ->
+module.exports = (publicPageUrl, c, additionalMapping={}) ->
   request publicPageUrl, (e,r) ->
+    console.log r, r.body
     $ = cheerio.load r.body
 
     result = websites: {}
 
+    mapping = R.merge mapping, additionalMapping
     for field, o of mapping.sections
       if field == 'skills'
         result.skills = $(o.selector).map(-> $(@).text()).get()
