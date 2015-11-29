@@ -5,3 +5,4 @@ module.exports =
   'websites': ['.websites', 'grabWebsites']
   'summary':  ['#summary > .description']
   'experience': ['.positions', 'grabExperience']
+  'certification': ['.certifications', 'grabCertification']

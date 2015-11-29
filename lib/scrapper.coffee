@@ -17,17 +17,28 @@ module.exports = (publicPageUrl, c) ->
           title: $(@).find('.item-title').text()
           company: $(@).find('.item-subtitle').text()
           description: $(@).find('.description').text()
-          daterange: daterange = $(@).find('.date-range').text()
           date:
-            from: daterange.replace(/ –.*/,'')
-            to: daterange.replace(/.*– /,'')
+            from: $(@).find('.date-range').text().replace(/ –.*/,'')
+            to: $(@).find('.date-range').text().replace(/.*– /,'')
       })
       experience
+
+    $::grabCertification = ->
+      certification = []
+      @.find('.certification').each(-> certification.push {
+          title: $(@).find('.item-title').text()
+          authority: $(@).find('.item-subtitle').text()
+          date:
+            from: $(@).find('.date-range').text().replace(/ –.*/,'')
+            to: $(@).find('.date-range').text().replace(/.*– /,'')
+      })
+      certification
+
 
     result = {}
     for field, operations of mapping
       operations[1] = 'text' unless operations[1]
       result[field] = $(operations[0])[operations[1]]()
 
-    console.log result.experience
+    console.log result.certification[0]
     c response: r, $: $, result: result
