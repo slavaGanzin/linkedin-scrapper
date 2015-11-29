@@ -6,3 +6,4 @@ module.exports =
   'summary':  ['#summary > .description']
   'experience': ['.positions', 'grabExperience']
   'certification': ['.certifications', 'grabCertification']
+  'education': ['.schools', 'grabEducation']

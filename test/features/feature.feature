@@ -28,3 +28,10 @@ Scenario: Parse Certifications
   Then certification.0.authority is Certification Authority, License License number
   Then certification.0.date.from is April 2000
   Then certification.0.date.to is June 2000
+
+Scenario: Parse Education
+  Then education.0.title is Massachusetts Institute of Technology
+  Then education.0.grade is High School, Field of study, Grade
+  Then education.0.date.from is 2003
+  Then education.0.date.to is 2017
+  Then education.0.description is Education description
