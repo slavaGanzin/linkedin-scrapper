@@ -14,8 +14,7 @@ module.exports = (publicPageUrl, c) ->
       websites
 
     $::grabExperience = ->
-      experience = []
-      @.find('.position').each(-> experience.push {
+      @.find('.position').map(-> {
         title: $(@).find('.item-title').text()
         company: $(@).find('.item-subtitle').text()
         description: $(@).find('.description').text()
@@ -23,23 +22,18 @@ module.exports = (publicPageUrl, c) ->
           from: $(@).find('.date-range').text().replace(/ –.*/,'')
           to: $(@).find('.date-range').text().replace(/.*– /,'')
       })
-      experience
 
     $::grabCertification = ->
-      certification = []
-      @.find('.certification').each(-> certification.push {
+      @.find('.certification').map(-> {
         title: $(@).find('.item-title').text()
         authority: $(@).find('.item-subtitle').text()
         date:
           from: $(@).find('.date-range').text().replace(/ –.*/,'')
           to: $(@).find('.date-range').text().replace(/.*– /,'')
       })
-      certification
 
     $::grabEducation= ->
-      result = []
-      @.find('.education').each(->
-      result.push {
+      @.find('.school').map(-> {
         title: $(@).find('.item-title').text()
         grade: $(@).find('.item-subtitle').text()
         description: $(@).find('.description p').first().text()
@@ -47,8 +41,9 @@ module.exports = (publicPageUrl, c) ->
           from: $(@).find('.date-range').text().replace(/ –.*/,'')
           to: $(@).find('.date-range').text().replace(/.*– /,'')
       })
-      result
 
+    $::grabSkills = ->
+      @.find('.skill').map(-> $(@).text())
 
     result = {}
     for field, operations of mapping

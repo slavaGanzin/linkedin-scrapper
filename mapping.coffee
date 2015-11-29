@@ -7,3 +7,4 @@ module.exports =
   'experience': ['.positions', 'grabExperience']
   'certification': ['.certifications', 'grabCertification']
   'education': ['.schools', 'grabEducation']
+  'skills': ['#skills', 'grabSkills']

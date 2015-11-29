@@ -35,3 +35,8 @@ Scenario: Parse Education
   Then education.0.date.from is 2003
   Then education.0.date.to is 2017
   Then education.0.description is Education description
+
+Scenario: Parse skills
+  Then skills.0 is skill1
+  Then skills.1 is skill2
+  Then skills.2 is skill3
