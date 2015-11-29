@@ -4,3 +4,4 @@ module.exports =
   'industry': ['#demographics > .descriptor']
   'websites': ['.websites', 'grabWebsites']
   'summary':  ['#summary > .description']
+  'experience': ['.positions', 'grabExperience']
