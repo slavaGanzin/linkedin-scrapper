@@ -33,5 +33,7 @@ addditionalMapping = {
   }
 }
 ```
-
+# Troubleshooting
 **LinkedIn markup may change. So launch** ```npm test``` **first**
+
+Linkedin blocks AWS, Travis and other SaaS/PaaS by IP.
