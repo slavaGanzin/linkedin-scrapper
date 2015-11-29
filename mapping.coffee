@@ -1,10 +1,29 @@
 module.exports =
-  'fullname': ['#name']
-  'headline': ['.headline.title']
-  'industry': ['#demographics > .descriptor']
-  'websites': ['.websites', 'grabWebsites']
-  'summary':  ['#summary > .description']
-  'experience': ['.positions', 'grabExperience']
-  'certification': ['.certifications', 'grabCertification']
-  'education': ['.schools', 'grabEducation']
-  'skills': ['#skills', 'grabSkills']
+  sections:
+    fullname: selector: '#name'
+    headline: selector: '.headline.title'
+    industry: selector: '#demographics > .descriptor'
+    websites: selector: '.websites li a'
+    summary: selector: '#summary > .description'
+    skills: selector: 'li.skill'
+
+    experience:
+      selector: '.positions > .position'
+      mapping:
+        company: '.item-subtitle'
+
+    certification:
+      selector: '.certifications > .certification'
+      mapping:
+        authority: '.item-subtitle'
+
+    education:
+      selector: '.schools > .school'
+      mapping:
+        grade: '.item-subtitle'
+        description: '.description p'
+
+  defaultSectionMapping:
+    title: '.item-title'
+    description: '.description'
+    date: '.date-range'

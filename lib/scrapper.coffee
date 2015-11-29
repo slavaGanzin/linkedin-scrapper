@@ -1,54 +1,35 @@
 cheerio = require 'cheerio'
 request = require 'request'
 mapping = require '../mapping'
+R = require 'ramda'
 
 module.exports = (publicPageUrl, c) ->
   request publicPageUrl, (e,r) ->
     $ = cheerio.load r.body
 
-    $::grabWebsites = ->
-      websites = {}
-      @.find('li a').each(->
-        k = $(@).text().replace(/ Website/,'').toLowerCase()
-        websites[k] = $(@).attr('href'))
-      websites
+    result = websites: {}
 
-    $::grabExperience = ->
-      @.find('.position').map(-> {
-        title: $(@).find('.item-title').text()
-        company: $(@).find('.item-subtitle').text()
-        description: $(@).find('.description').text()
-        date:
-          from: $(@).find('.date-range').text().replace(/ –.*/,'')
-          to: $(@).find('.date-range').text().replace(/.*– /,'')
-      })
+    for field, o of mapping.sections
+      if field == 'skills'
+        result.skills = $(o.selector).map(-> $(@).text()).get()
 
-    $::grabCertification = ->
-      @.find('.certification').map(-> {
-        title: $(@).find('.item-title').text()
-        authority: $(@).find('.item-subtitle').text()
-        date:
-          from: $(@).find('.date-range').text().replace(/ –.*/,'')
-          to: $(@).find('.date-range').text().replace(/.*– /,'')
-      })
+      else if field == 'websites'
+        $(o.selector).map ->
+          k = $(@).text().replace(/ Website/,'').toLowerCase()
+          result.websites[k] = $(@).attr('href')
 
-    $::grabEducation= ->
-      @.find('.school').map(-> {
-        title: $(@).find('.item-title').text()
-        grade: $(@).find('.item-subtitle').text()
-        description: $(@).find('.description p').first().text()
-        date:
-          from: $(@).find('.date-range').text().replace(/ –.*/,'')
-          to: $(@).find('.date-range').text().replace(/.*– /,'')
-      })
+      else if not o.mapping
+        result[field] = $(o.selector).text()
 
-    $::grabSkills = ->
-      @.find('.skill').map(-> $(@).text())
+      else
+        result[field] = $(o.selector).map(->
+          R.mapObjIndexed (v,k) =>
+            if k == 'date'
+              from: $(@).find(v).text().replace(/ –.*/,'')
+              to:   $(@).find(v).text().replace(/.*– /,'')
+            else
+              $(@).find(v).text()
+          ,R.merge mapping.defaultSectionMapping, o.mapping
+        ).get()
 
-    result = {}
-    for field, operations of mapping
-      operations[1] = 'text' unless operations[1]
-      result[field] = $(operations[0])[operations[1]]()
-
-    console.log result.certification[0]
     c response: r, $: $, result: result
