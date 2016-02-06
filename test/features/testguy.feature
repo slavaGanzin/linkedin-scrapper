@@ -16,7 +16,7 @@ Scenario: Parse Experience
   Then experience.0.company is Second company
   Then experience.0.description is Second description
   Then experience.0.date.from is January 2000
-  Then experience.0.date.to is Present (15 years 11 months)
+  Then experience.0.date.to is April 2015 (15 years 4 months)
   Then experience.1.title is First job
   Then experience.1.company is First company
   Then experience.1.description is First description

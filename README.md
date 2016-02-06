@@ -33,6 +33,9 @@ addditionalMapping = {
   }
 }
 ```
+Be aware linkedin uses different markup for profiles when you are authorized/not authorized.
+You should use not authorized selectors - this script didn't login (but it should).
+
 # Troubleshooting
 **LinkedIn markup may change. So launch** ```npm test``` **first**
 

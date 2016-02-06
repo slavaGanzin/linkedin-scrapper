@@ -2,37 +2,37 @@ module.exports =
   sections:
     fullname: selector: '#name'
     headline: selector: '.headline.title'
-    industry: selector: '#demographics > .descriptor'
+    industry: selector: '#demographics > .descriptor:not(.adr)'
     websites: selector: '.websites li a'
     summary: selector: '#summary > .description'
     skills: selector: 'li.skill'
 
     experience:
-      selector: '.positions > .position'
+      selector:  '.positions > .position'
       mapping:
         company: '.item-subtitle'
 
     certification:
-      selector: '.certifications > .certification'
+      selector:    '.certifications > .certification'
       mapping:
         authority: '.item-subtitle'
 
     education:
-      selector: '.schools > .school'
+      selector:      '.schools > .school'
       mapping:
-        grade: '.item-subtitle'
+        grade:       '.item-subtitle'
         description: '.description p'
 
     projects:
-      selector: '#projects .project'
+      selector:       '#projects .project'
       mapping:
         link:
-          selector: 'a'
-          method: 'attr'
+          selector:   'a'
+          method:     'attr'
           parameters: 'href'
 
 
   defaultSectionMapping:
-    title: '.item-title'
+    title:       '.item-title'
     description: '.description'
-    date: '.date-range'
+    date:        '.date-range'

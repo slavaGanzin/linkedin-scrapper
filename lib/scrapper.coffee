@@ -9,8 +9,7 @@ module.exports = (publicPageUrl, c, additionalMapping={}) ->
 
     result = websites: {}
 
-    mapping = R.merge mapping, additionalMapping
-    for field, o of mapping.sections
+    for field, o of R.merge mapping.sections, additionalMapping
       if field == 'skills'
         result.skills = $(o.selector).map(-> $(@).text()).get()
 
