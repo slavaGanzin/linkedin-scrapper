@@ -5,7 +5,7 @@
   "main": "index.coffee",
   "scripts": {
     "test": "npm install && NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/all.coffee --compilers coffee:coffee-script/register --timeout 5000",
-    "prepublish": "coffee -c lib/scrapper.coffee mapping.coffee"
+    "prepublish": "npm test && coffee -c lib/scrapper.coffee mapping.coffee"
   },
   "repository": {
     "type": "git",
