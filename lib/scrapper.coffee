@@ -5,6 +5,9 @@ R = require 'ramda'
 
 module.exports = (publicPageUrl, c, additionalMapping={}) ->
   request publicPageUrl, (e,r) ->
+    if(!r)
+      c undefined
+      return
     $ = cheerio.load r.body
 
     result = websites: {}
